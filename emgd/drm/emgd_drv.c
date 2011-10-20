@@ -1978,6 +1978,7 @@ static int __init emgd_init(void) {
 	driver.num_ioctls = emgd_max_ioctl;
 	ret = drm_init(&driver);
 	PVRDPFInit();
+	EMGD_DEBUG("emgd_init: DEBUG test\n");
 	printk(KERN_INFO "[EMGD] drm_init() returning %d\n", ret);
 	EMGD_TRACE_EXIT;
 	return ret;

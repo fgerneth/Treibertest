@@ -134,6 +134,13 @@ static __inline const char *os_get_funcname( const char *name )
 #define EMGD_DEBUG_MSG_PRIORITY KERN_DEBUG
 #endif
 
+#define EMGD_DEBUG(...) \
+  do {\
+  printk(KERN_ALERT "[Ei geh - Debug] %s ", __FUNCTION__); \
+  printk(__VA_ARGS__); \
+  printk("\n"); \
+  } while(0);
+
 /*
  * EMGD_DEBUG()
  * Printing with EMGD_DEBUG will be compiled in to all debug drivers and
