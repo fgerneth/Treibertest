@@ -1,0 +1,39 @@
+config  DRM_EMGD
+        tristate "Intel IVI EMGD Kernel Module Driver"
+	depends on DRM &&PCI
+	select FB_CFB_COPYAREA
+	select FB_CFB_FILLRECT
+	select FB_CFB_IMAGEBLIT
+	select DRM_KMS_HELPER
+	select DRM_TTM
+	default m
+	help
+        Choose this option if you have a Tunnel Creak platform.
+        If M is selected the module will be called emgd.
+
+choice
+	prompt "Build EMGD kernel driver as "
+	depends on DRM_EMGD
+	default DRM_EMGD_RELEASE
+
+config 	DRM_EMGD_RELEASE
+	bool "Release"
+	depends on DRM_EMGD
+	help
+	  Build EMGD driver as release
+
+config 	DRM_EMGD_DEBUG
+	bool "Debug"
+	depends on DRM_EMGD
+	help
+	  Build EMGD driver as debug
+
+endchoice
+
+config DRM_EMGD_PDUMP
+	bool "Support PDUMP"
+	depends on DRM_EMGD
+	default n
+	help
+	  Choose "yes" to enable PDUMP feature.
+	  This is used to help debug EMGD driver.
